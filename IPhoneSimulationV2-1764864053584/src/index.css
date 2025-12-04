@@ -29,10 +29,3 @@ html, body {
 body {
   overscroll-behavior-y: contain;
 }
-
-/* Safe area insets for notched devices - only for top to avoid bottom bar */
-@supports (padding: env(safe-area-inset-top)) {
-  #root {
-    padding-top: env(safe-area-inset-top);
-  }
-}
