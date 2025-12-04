@@ -15,7 +15,8 @@ export default defineConfig({
         description: 'Interactive iPhone 12 messenger and call simulation',
         theme_color: '#000000',
         background_color: '#000000',
-        display: 'standalone',
+        display: 'fullscreen',
+        display_override: ['fullscreen', 'standalone'],
         orientation: 'portrait',
         icons: [
           {
