@@ -174,25 +174,25 @@ const KeyboardWithInput = ({
 
 // 5. Incoming Call Banner (Turquoise)
 const CallBanner = ({ onClick }: { onClick: () => void }) => (
-  <motion.div 
+  <motion.div
     initial={{ y: -100, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
-    className="absolute top-4 left-4 right-4 h-20 bg-gradient-to-r from-[#29D9D5] to-[#24C6DC] rounded-2xl shadow-2xl z-50 flex items-center px-4 gap-3 cursor-pointer"
+    className="absolute top-20 left-4 right-4 h-24 bg-gradient-to-r from-[#29D9D5] to-[#24C6DC] rounded-2xl shadow-2xl z-50 flex items-center px-4 gap-3 cursor-pointer"
     onClick={onClick}
   >
     <div className="flex-1 text-white">
-      <div className="flex items-center gap-2 text-white/80 text-xs mb-0.5">
-        <Phone size={12} className="fill-current" />
-        <span>JOHANNA STERN</span>
+      <div className="flex items-center gap-2 mb-1">
+        <Phone size={14} className="fill-current text-white/80" />
+        <span className="text-sm text-white/80">Eingehender Anruf</span>
       </div>
-      <div className="font-semibold text-lg">Eingehender Anruf</div>
+      <div className="font-bold text-2xl tracking-wide">JOHANNA STERN</div>
     </div>
     <div className="flex gap-3">
-      <button className="w-10 h-10 rounded-full bg-[#FF3B30] flex items-center justify-center text-white shadow-md">
-        <Phone size={20} className="rotate-[135deg]" />
+      <button className="w-12 h-12 rounded-full bg-[#FF3B30] flex items-center justify-center text-white shadow-md">
+        <Phone size={22} className="rotate-[135deg]" />
       </button>
-      <button className="w-10 h-10 rounded-full bg-[#30D158] flex items-center justify-center text-white shadow-md">
-        <Phone size={20} />
+      <button className="w-12 h-12 rounded-full bg-[#30D158] flex items-center justify-center text-white shadow-md">
+        <Phone size={22} />
       </button>
     </div>
   </motion.div>
