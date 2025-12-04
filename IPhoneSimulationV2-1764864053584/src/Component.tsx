@@ -252,9 +252,12 @@ export function IPhoneSimulation() {
   const [stage, setStage] = useState<Stage>('chat_typing');
   const [inputText, setInputText] = useState("");
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
-  
+
   // Scroll to bottom ref
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Double tap detection
+  const lastTapRef = useRef<number>(0);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current) {
@@ -307,6 +310,22 @@ export function IPhoneSimulation() {
     }
   }, [stage]);
 
+  // Handle double tap on black screen to restart
+  const handleBlackScreenTap = () => {
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300; // milliseconds
+
+    if (now - lastTapRef.current < DOUBLE_TAP_DELAY) {
+      // Double tap detected - reset everything
+      setStage('chat_typing');
+      setInputText("");
+      setMessages(INITIAL_MESSAGES);
+      lastTapRef.current = 0;
+    } else {
+      lastTapRef.current = now;
+    }
+  };
+
   return (
     <div className="w-full h-full bg-white flex flex-col font-sans overflow-hidden">
       {/* iPhone Frame Container - Removed extra wrappers/constraints */}
@@ -314,7 +333,10 @@ export function IPhoneSimulation() {
         
         {/* Black Screen State */}
         {stage === 'black_screen' && (
-          <div className="absolute inset-0 bg-black z-[100]" />
+          <div
+            className="absolute inset-0 bg-black z-[100] cursor-pointer"
+            onClick={handleBlackScreenTap}
+          />
         )}
 
         {/* Full Screen Call State */}
