@@ -326,6 +326,22 @@ export function IPhoneSimulation() {
     }
   };
 
+  // Handle keyboard events (Bluetooth keyboard support)
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Space key triggers banner when in chat_sent stage
+      if (event.code === 'Space' || event.key === ' ') {
+        event.preventDefault(); // Prevent page scroll
+        if (stage === 'chat_sent') {
+          setStage('banner_visible');
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [stage]);
+
   return (
     <div className="w-full h-full bg-white flex flex-col font-sans overflow-hidden">
       {/* iPhone Frame Container - Removed extra wrappers/constraints */}
